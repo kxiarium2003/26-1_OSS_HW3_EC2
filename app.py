@@ -4,8 +4,11 @@ import random
 from data_loader import get_quiz_data
 from logic import calculate_detailed_report
 
+# [LOG] 앱이 실행되거나 새로고침될 때 터미널에 표시
+print("[LOG] Streamlit App Loaded/Refreshed")
+
 # 첫 화면 정보 및 과제 명시
-st.sidebar.markdown("### OSS 중간고사 대체 과제")
+st.sidebar.markdown("### OSS HW3 - EC2 배포 실습")
 st.sidebar.info(
     "**학번:** 2023510005\n\n"
     "**이름:** 김민지\n"
@@ -27,14 +30,21 @@ def login():
         u_pw = st.text_input("비밀번호 입력", type="password")
         
         if st.button("분석 시작하기"):
+            # [LOG] 로그인 시도 로그 출력
+            print(f"[LOG] Login Attempt - ID: {u_id}")
+            
             # 유효성 검사 (실제 로그인 처리)
             if re.fullmatch(r'[a-zA-Z가-힣]+', u_id) and re.fullmatch(r'\d{10}', u_pw):
                 st.session_state.logged_in = True
                 st.session_state.user_name = u_id
                 st.success("인증 성공! 퀴즈 데이터를 생성합니다.")
+                # [LOG] 로그인 성공 로그 출력
+                print(f"[LOG] Login Success: User '{u_id}' has entered the app.")
                 st.rerun()
             else:
                 st.error("입력 형식을 확인해주세요.")
+                # [LOG] 로그인 실패 로그 출력
+                print(f"[LOG] Login Failed: Invalid format for ID '{u_id}'")
 
 def quiz():
     st.title(f"{st.session_state.user_name}님의 맞춤형 역량 분석")
@@ -44,6 +54,9 @@ def quiz():
     
     # 층화 추출(Stratified Sampling) 로직 구현
     if st.session_state.quiz_pool is None:
+        # [LOG] 퀴즈 생성 로그 출력
+        print(f"[LOG] Generating quiz pool for user: {st.session_state.user_name}")
+        
         # 카테고리별 분류
         basic_q = [q for q in all_questions if q['type'] == 'basic']
         advanced_q = [q for q in all_questions if q['type'] == 'advanced']
@@ -70,8 +83,12 @@ def quiz():
     
     # 결과 처리 (폼 외부)
     if submit:
+        # [LOG] 제출 버튼 클릭 로그 출력
+        print(f"[LOG] Quiz submission button clicked by {st.session_state.user_name}")
+        
         if None in user_answers:
             st.warning("모든 문항에 답변해 주셔야 정확한 분석이 가능합니다.")
+            print("[LOG] Submission blocked: Some questions were not answered.")
         else:
             score = sum(1 for i, q in enumerate(current_quiz) if user_answers[i] == q['answer'])
             report = calculate_detailed_report(score, len(current_quiz))
@@ -80,11 +97,16 @@ def quiz():
             st.balloons()
             st.subheader(f"✅ 최종 진단 스코어: {score}/{len(current_quiz)}")
             st.markdown(report)
+            
+            # [LOG] 최종 결과 로그 출력 (교수님이 가장 확인하기 좋은 지점)
+            print(f"[LOG] Quiz Completed - User: {st.session_state.user_name}, Score: {score}/{len(current_quiz)}")
 
 if not st.session_state.logged_in:
     login()
 else:
     if st.sidebar.button("로그아웃"):
+        # [LOG] 로그아웃 로그 출력
+        print(f"[LOG] User logged out: {st.session_state.user_name}")
         st.session_state.logged_in = False
         st.session_state.quiz_pool = None
         st.rerun()
