@@ -1,0 +1,12 @@
+[
+    {"question": "핀테크(FinTech)는 금융(Finance)과 무엇의 합성어인가요?", "options": ["Technology", "Technique", "Total", "Trade"], "answer": "Technology", "type": "basic"},
+    {"question": "중앙은행이 발행하는 디지털 화폐를 일컫는 용어는?", "options": ["NFT", "CBDC", "DeFi", "Stablecoin"], "answer": "CBDC", "type": "basic"},
+    {"question": "주식처럼 거래소에 상장되어 거래되는 펀드는?", "options": ["ETF", "REITs", "ELS", "MMF"], "answer": "ETF", "type": "basic"},
+    {"question": "오픈뱅킹에서 데이터 공유를 가능하게 하는 핵심 인터페이스는?", "options": ["HTTP", "API", "SQL", "FTP"], "answer": "API", "type": "basic"},
+    {"question": "블록체인 기반의 탈중앙화 금융 서비스를 무엇이라 하나요?", "options": ["Financing", "DeFi", "Open Banking", "Micropayment"], "answer": "DeFi", "type": "basic"},
+    {"question": "금융 시계열 데이터 분석에서 변동성(Volatility)을 측정할 때 주로 사용하는 통계량은?", "options": ["평균", "표준편차", "중앙값", "최빈값"], "answer": "표준편차", "type": "advanced"},
+    {"question": "두 금융 자산 간의 선형적 관계를 분석할 때 가장 널리 쓰이는 상관계수는?", "options": ["피어슨 상관계수", "스피어먼 상관계수", "켄달의 타우", "결정계수"], "answer": "피어슨 상관계수", "type": "advanced"},
+    {"question": "과거 주가 데이터를 바탕으로 미래 가격을 예측하는 회귀 분석 시, 시간의 흐름을 고려하는 데이터 형태는?", "options": ["교차 섹션 데이터", "시계열 데이터", "범주형 데이터", "비정형 데이터"], "answer": "시계열 데이터", "type": "advanced"},
+    {"question": "은행에서 고객의 신용 등급을 분류(Classification)할 때 주로 쓰이는 머신러닝 알고리즘은?", "options": ["K-Means", "로지스틱 회귀", "PCA", "Apriori"], "answer": "로지스틱 회귀", "type": "advanced"},
+    {"question": "데이터 분석 시 이상치(Outlier)가 많은 금융 데이터에 더 강건한(Robust) 상관분석 방법은?", "options": ["피어슨", "스피어먼", "최소자승법", "단순 평균"], "answer": "스피어먼", "type": "advanced"}
+]
